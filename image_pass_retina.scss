@@ -5,3 +5,8 @@
     background-image: url(#{$retina-common-imgpath}#{$img-name});
   }
 }
+
+////////////////////////////////////////////////////////////////
+.hoge{
+  bgImgWithRetina("hoge.png")
+}
