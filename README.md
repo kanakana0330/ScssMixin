@@ -1,4 +1,4 @@
 ScssMixin
 =========
 
-Scssのmixinです！
+便利なMixinをメモしていくリポジトリ！
