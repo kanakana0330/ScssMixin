@@ -1,0 +1,67 @@
+/* Sprite */
+$class_sprite : 'spr';
+
+@mixin sprite($__w, $__h, $__x:0, $__y:0){
+  width: #{$__w}px;
+  height: #{$__h}px;
+  background-position: #{$__x}px #{$__y}px;
+}
+@mixin spriteGroup($__size, $__row, $__length){
+  @for $__i from 1 through $__length {
+    .#{$class_sprite}#{$__size}-#{$__row}_#{$__i}{
+      @include sprite(#{$__size}, #{$__size}, -(($__i - 1) * $__size), -(($__row - 1) * $__size));
+    }
+  }
+}
+
+/////////////////////////////////////////////////////////////
+// sprite for etc 
+// size : 18 * 18
+$_size: 18;
+$_name: 's18_etc';
+
+.#{$class_sprite}[class*=#{$_name}] {
+  width: #{$_size}px;
+  height: #{$_size}px;
+  background-image:url(#{$common-imgpath}#{$_name}.png?#{$sprite18Update});
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
+    background-image: url(#{$retina-common-imgpath}#{$_name}.png?#{$sprite18Update});
+    @include background-size(auto #{$_size}px);
+  }
+}
+
+.#{$_name}_beginner {
+  background-position: 0 0;
+}
+.#{$_name}_alert {
+  background-position: -#{$_size * 1}px 0;
+}
+.#{$_name}_point {
+  background-position: -#{$_size * 2}px 0;
+}
+
+/////////////////////////////////////////////////////////////
+// sprite for coin 
+// size : 36 * 36
+$_size: 36;
+$_name: 's36_coin';
+
+.#{$class_sprite}[class*=#{$_name}] {
+  width: #{$_size}px;
+  height: #{$_size}px;
+  background-image:url(#{$common-imgpath}#{$_name}.png?#{$sprite18Update});
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
+    background-image: url(#{$retina-common-imgpath}#{$_name}.png?#{$sprite18Update});
+    @include background-size(auto #{$_size}px);
+  }
+}
+
+.#{$_name}_purchase {
+  background-position: 0 0;
+}
+.#{$_name}_history {
+  background-position: -#{$_size * 1}px 0;
+}
+.#{$_name}_campaign {
+  background-position: -#{$_size * 2}px 0;
+}

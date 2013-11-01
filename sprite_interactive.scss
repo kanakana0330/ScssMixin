@@ -1,0 +1,77 @@
+/* Sprite Interactive */
+$class_sprite : 'spr';
+
+//$_lastName : スプライト名
+//$_length : 左からの位置を0から数えてください
+//$_tapped : tappedで色が変わる場合はtrue,変わらない場合はfalse
+//$_cur :  curで色が変わる場合はtrue,変わらない場合はfalse
+//$_disabled : disabledで色が変わる場合はtrue,変わらない場合はfalse
+@mixin ia($_lastName,$_length,$_tapped,$_cur,$_disabled){
+  .#{$_name}_#{$_lastName} {
+    $__left: -#{$_size * $_length}px;
+    background-position: #{$__left} 0;
+    @if $_tapped == true {
+      .#{$class_sprite-tapped} &,
+      &.#{$class_sprite-tapped}{
+        background-position: #{$__left} -#{$_size}px;
+      }
+    }
+    @if $_cur == true {
+      .#{$class_sprite-cur} &,
+      &.#{$class_sprite-cur}{
+        background-position: #{$__left} -#{$_size * 2}px;
+      }
+    }
+    @if $_disabled == true {
+      .#{$class_sprite-disabled} &,
+      &.#{$class_sprite-disabled}{
+        background-position: #{$__left} -#{$_size * 3}px;
+      }
+    }
+  }
+}
+
+/////////////////////////////////////////////////////////////
+// interactice sprite for arrow(caret)
+// size : 18 * 18
+$_size: 18;
+$_low: 3;
+$_name: 'ia18_arw';
+
+.#{$class_sprite}[class*=#{$_name}] {
+  width: #{$_size}px;
+  height: #{$_size}px;
+  background-image:url(#{$common-imgpath}#{$_name}.png?#{$sprite18Update});
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
+    background-image: url(#{$retina-common-imgpath}#{$_name}.png?#{$sprite18Update});
+    @include background-size(auto #{$_size * $_low}px);
+  }
+}
+
+@include ia("r",0,false,false,false);
+@include ia("b",1,false,false,false);
+@include ia("t",2,false,false,false);
+@include ia("b_blue",3,false,false,false);
+@include ia("t_blue",4,false,false,false);
+@include ia("l_white",5,false,false,false);
+@include ia("r_white",6,false,false,false);
+
+/////////////////////////////////////////////////////////////
+// interactice sprite for service
+// size : 36 * 36
+$_size: 36;
+$_low: 3;
+$_name: 'ia36_service';
+
+.#{$class_sprite}[class*=#{$_name}] {
+  width: #{$_size}px;
+  height: #{$_size}px;
+  background-image:url(#{$common-imgpath}#{$_name}.png?#{$sprite18Update});
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
+    background-image: url(#{$retina-common-imgpath}#{$_name}.png?#{$sprite18Update});
+    @include background-size(auto #{$_size * $_low}px);
+  }
+}
+
+@include ia("au",0,false,false,false);
+@include ia("yahoo",1,false,false,false);
